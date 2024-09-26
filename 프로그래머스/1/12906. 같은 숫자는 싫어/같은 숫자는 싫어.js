@@ -1,4 +1,7 @@
 function solution(arr)
 {
-    return arr.filter((el,i)=>el!==arr[i+1])
+    let answer = arr.filter((el,i)=>{
+        return el!==arr[i+1]
+    })
+    return answer
 }
