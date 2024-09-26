@@ -1,20 +1,11 @@
 function solution(s) {
-    let result = '';
-    let isFirst = true;
+    let answer = '';
     for (let i=0;i<s.length;i++) {
-        let char = s[i];
-        
-        if (char === ' ') {
-            result += char
-            isFirst = true
+        if (i===0 || s[i-1]===' ') {
+            answer += s[i].toUpperCase()
         } else {
-            if (isFirst) {
-                result += char.toUpperCase();
-                isFirst = false
-            } else {
-                result += char.toLowerCase()
-            }
+            answer += s[i].toLowerCase()
         }
     }
-    return result
+    return answer
 }
