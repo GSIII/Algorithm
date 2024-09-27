@@ -2,18 +2,18 @@ function solution(progresses, speeds) {
     let answer = [];
     let workDays = [];
     for (let i=0;i<progresses.length;i++) {
-        let remainingDays = Math.ceil((100 - progresses[i]) / speeds[i]);
-        workDays.push(remainingDays);
+        let workDay = Math.ceil((100-progresses[i])/speeds[i]);
+        workDays.push(workDay)
     }
-    let deployDate = workDays[0];
     let count = 1;
-    for (let j=1;j<workDays.length;j++) {
-        if (deployDate>=workDays[j]) {
+    let deployDate = workDays[0]
+    for (let i=1;i<workDays.length;i++) {
+        if (deployDate>=workDays[i]) {
             count++
         } else {
-            answer.push(count)
-            deployDate = workDays[j];
-            count = 1
+            answer.push(count);
+            deployDate = workDays[i];
+            count = 1;
         }
     }
     answer.push(count)
