@@ -7,5 +7,4 @@ function solution(citations) {
         }
     }
     return count
-    
 }
