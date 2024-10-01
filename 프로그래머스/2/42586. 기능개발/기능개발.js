@@ -1,21 +1,20 @@
 function solution(progresses, speeds) {
-    let answer = [];
-    let workDays = [];
+    let workDay = [];
     for (let i=0;i<progresses.length;i++) {
-        let workDay = Math.ceil((100-progresses[i])/speeds[i]);
-        workDays.push(workDay)
+        let workDate = Math.ceil((100-progresses[i])/speeds[i])
+        workDay.push(workDate)
     }
-    let count = 1;
-    let deployDate = workDays[0]
-    for (let i=1;i<workDays.length;i++) {
-        if (deployDate>=workDays[i]) {
-            count++
-        } else {
-            answer.push(count);
-            deployDate = workDays[i];
-            count = 1;
+    for (let j=0;j<workDay.length;j++) {
+        if (workDay[j]>=workDay[j+1]) {
+            workDay[j+1] = workDay[j]
         }
     }
-    answer.push(count)
+    let workMap = new Map();
+    workDay.forEach((count)=>{
+        workMap.set(count,(workMap.get(count)||0)+1)
+    })
+    let answer = [];
+    workMap.forEach(count=>answer.push(count))
+    
     return answer
 }
