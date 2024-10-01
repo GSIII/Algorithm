@@ -1,10 +1,10 @@
 function solution(citations) {
-    citations.sort((a,b)=>b-a);
-    let count = 0;
+    citations.sort((a,b)=>b-a)
+    let answer = 0;
     for (let i=0;i<citations.length;i++) {
         if (i<citations[i]) {
-            count++
+            answer++
         }
     }
-    return count
+    return answer
 }
