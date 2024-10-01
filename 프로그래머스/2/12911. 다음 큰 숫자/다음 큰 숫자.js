@@ -1,8 +1,7 @@
 function solution(n) {
-    let countOne =(num)=> num.toString(2).split('1').length-1;
-    let targetCount = countOne(n);
+    const oneCount =(num)=> num.toString(2).split('1').length-1;
     let nextNum = n+1;
-    while(countOne(nextNum) !== targetCount) {
+    while(oneCount(n) !== oneCount(nextNum)) {
         nextNum++
     }
     return nextNum
