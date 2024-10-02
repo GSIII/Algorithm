@@ -1,12 +1,14 @@
 function solution(brown, yellow) {
-    let width;
     let height;
-    let total = brown+yellow
-    for (height=3;height<=total;height++) {
-        if (total%height===0){
-            width = total/height;
-            if ((width+height-2)*2===brown) {
-                return [width,height]
+    let weight;
+    let total = brown + yellow
+    for (let i=3; i<= total; i++) {
+        if (total%i===0) {
+            height = i;
+            weight = total/i
+            
+            if ((weight+height-2)*2===brown){
+                return [weight, height]
             }
         }
     }
