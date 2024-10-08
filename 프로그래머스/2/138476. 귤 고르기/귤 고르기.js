@@ -3,16 +3,17 @@ function solution(k, tangerine) {
     tangerine.forEach(size=>{
         tangerineMap.set(size, (tangerineMap.get(size)||0)+1)
     })
-    let arr = [];
-    tangerineMap.forEach(count=>arr.push(count))
-    arr.sort((a,b)=>b-a)
+    
+    let arr = Array.from(tangerineMap.values()).sort((a, b) => b - a);
+
+    let selectedNum = 0;
     let count = 0;
     
     for (let i=0;i<arr.length;i++) {
-        k -= arr[i]
+        selectedNum += arr[i]
         count++
         
-        if (k<=0) {
+        if (selectedNum>=k) {
             break;
         }
     }
