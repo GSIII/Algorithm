@@ -1,19 +1,13 @@
 function solution(s){
-    let count = 0;
+    let stack = [];
     for (let i=0;i<s.length;i++) {
         if (s[i]==='(') {
-            count++
+            stack.push(s[i])
         } else {
-            count--;
+            if (stack.length===0) return false;
             
-            if (count<0) {
-                return false
-            } 
+            stack.pop()
         }
     }
-    if (count===0) {
-        return true
-    } else {
-        return false
-    }
+    return stack.length===0 
 }
