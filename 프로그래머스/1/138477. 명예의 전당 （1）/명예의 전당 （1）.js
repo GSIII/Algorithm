@@ -1,20 +1,14 @@
 function solution(k, score) {
-    let hallOfFame = [];
-    let minArr = [];      
-
-    for (let i = 0; i < score.length; i++) {
+    let fameArr = [];
+    let answer = [];
+    for (let i=0;i<score.length;i++) {
+        fameArr.push(score[i]);
+        fameArr.sort((a,b)=>b-a)
+        if(fameArr.length>k) {
+            fameArr.pop()
+        } 
         
-        hallOfFame.push(score[i]);
-        
-        
-        hallOfFame.sort((a, b) => b - a);
-        if (hallOfFame.length > k) {
-            hallOfFame.pop(); 
-        }
-
-        
-        minArr.push(hallOfFame[hallOfFame.length-1])
+        answer.push(fameArr[fameArr.length-1])
     }
-    
-    return minArr;
+    return answer
 }
