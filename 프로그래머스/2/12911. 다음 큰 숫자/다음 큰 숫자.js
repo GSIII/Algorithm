@@ -1,10 +1,10 @@
 function solution(n) {
-    const oneCount = (num) => {
-       return num.toString(2).split('1').length-1;
+    const oneNum = (num) =>{
+        return num.toString(2).split('1').length-1
     }
-    let nNext = n+1
-    while (oneCount(n) !== oneCount(nNext)) {
-        nNext++
+    let nextNum = n+1
+    while(oneNum(n) !== oneNum(nextNum)) {
+        nextNum++
     }
-    return nNext
+    return nextNum
 }
