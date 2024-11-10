@@ -1,86 +1,85 @@
 class MinHeap {
-    constructor() {
-        this.heap = [];
+  constructor() {
+      this.heap = [null];
+  }
+  
+  push(value) {
+      this.heap.push(value);
+      let currentIndex = this.heap.length - 1;
+      let parentIndex = Math.floor(currentIndex / 2);
+      
+      while (parentIndex !== 0 && this.heap[parentIndex] > value) {
+          const temp = this.heap[parentIndex];
+          this.heap[parentIndex] = value;
+          this.heap[currentIndex] = temp;
+          
+          currentIndex = parentIndex;
+          parentIndex = Math.floor(currentIndex / 2);
+      }
+  }
+  
+  pop() {
+    if (this.heap.length === 2) return this.heap.pop(); // 힙에 값이 하나만 있을 때 처리
+
+    const returnValue = this.heap[1]; // 반환할 값은 항상 1번 인덱스
+    this.heap[1] = this.heap.pop(); // 마지막 요소를 1번 인덱스로 이동
+
+    let currentIndex = 1; // 1번 인덱스부터 시작
+    let leftIndex = currentIndex * 2; // 왼쪽 자식 인덱스
+    let rightIndex = currentIndex * 2 + 1; // 오른쪽 자식 인덱스
+
+    // 자식 노드가 둘 다 존재하는지 확인
+    while (this.heap[leftIndex] !== undefined) {
+      // 자식 노드들이 있을 때, 더 작은 값을 찾음
+      let smallerIndex = leftIndex; // 기본적으로 왼쪽 자식으로 설정
+      if (this.heap[rightIndex] !== undefined && this.heap[rightIndex] < this.heap[leftIndex]) {
+        smallerIndex = rightIndex; // 오른쪽 자식이 더 작으면 교체
+      }
+
+      // 부모와 더 작은 자식 노드를 비교하여 교환
+      if (this.heap[currentIndex] > this.heap[smallerIndex]) {
+        const temp = this.heap[currentIndex];
+        this.heap[currentIndex] = this.heap[smallerIndex];
+        this.heap[smallerIndex] = temp;
+
+        currentIndex = smallerIndex; // 교환한 자식 노드로 인덱스를 갱신
+        leftIndex = currentIndex * 2; // 왼쪽 자식 인덱스 갱신
+        rightIndex = currentIndex * 2 + 1; // 오른쪽 자식 인덱스 갱신
+      } else {
+        break; // 부모가 더 작으면 종료
+      }
     }
 
-    // 힙에 값을 삽입하는 메서드
-    insert(value) {
-        this.heap.push(value);
-        this._heapifyUp();
-    }
-
-    // 가장 작은 값을 꺼내는 메서드
-    extractMin() {
-        if (this.heap.length === 0) return null;
-        if (this.heap.length === 1) return this.heap.pop();
-
-        const min = this.heap[0];
-        this.heap[0] = this.heap.pop(); // 마지막 요소를 루트로 교체
-        this._heapifyDown();
-        return min;
-    }
-
-    // 부모-자식 관계를 맞추기 위해 위로 올리는 메서드
-    _heapifyUp() {
-        let index = this.heap.length - 1;
-        while (index > 0) {
-            const parentIndex = Math.floor((index - 1) / 2);
-            if (this.heap[parentIndex] <= this.heap[index]) break;
-            [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
-            index = parentIndex;
-        }
-    }
-
-    // 부모-자식 관계를 맞추기 위해 아래로 내리는 메서드
-    _heapifyDown() {
-        let index = 0;
-        const length = this.heap.length;
-        while (index < length) {
-            const leftChildIndex = 2 * index + 1;
-            const rightChildIndex = 2 * index + 2;
-            let smallest = index;
-
-            if (leftChildIndex < length && this.heap[leftChildIndex] < this.heap[smallest]) {
-                smallest = leftChildIndex;
-            }
-            if (rightChildIndex < length && this.heap[rightChildIndex] < this.heap[smallest]) {
-                smallest = rightChildIndex;
-            }
-
-            if (smallest === index) break;
-
-            [this.heap[smallest], this.heap[index]] = [this.heap[index], this.heap[smallest]];
-            index = smallest;
-        }
-    }
-
-    // 힙이 비었는지 확인하는 메서드
-    isEmpty() {
-        return this.heap.length === 0;
-    }
+    return returnValue; // 반환할 값
+  }
 }
 
 function solution(scoville, K) {
-    let operations = 0;
-    const heap = new MinHeap();
+    const minHeap = new MinHeap();
 
-    // 스코빌 지수 배열을 힙에 삽입
-    scoville.forEach(value => heap.insert(value));
-
-    while (heap.heap[0] < K) {
-        if (heap.heap.length < 2) return -1; // 두 개 이상의 요소가 없으면 -1 반환
-
-        // 가장 작은 두 값을 추출
-        const first = heap.extractMin();
-        const second = heap.extractMin();
-
-        // 새로운 스코빌 지수 계산
-        const newScoville = first + (second * 2);
-
-        // 새로운 스코빌 지수를 힙에 삽입
-        heap.insert(newScoville);
-        operations++; // 연산 횟수 증가
+    // 모든 스코빌 지수를 최소 힙에 넣기
+    for (let score of scoville) {
+        minHeap.push(score);
     }
 
-    return operations;
+    let mixCount = 0;
+
+    // 최소 힙에서 두 개의 음식을 섞기
+    while (minHeap.heap.length > 2 && minHeap.heap[1] < K) { // 힙에 2개 이상의 값이 있어야 섞을 수 있음
+        let first = minHeap.pop();  // 가장 작은 값
+        let second = minHeap.pop(); // 두 번째로 작은 값
+
+        // 두 음식을 섞은 새로운 스코빌 지수
+        let newScoville = first + (second * 2);
+        minHeap.push(newScoville);
+        mixCount++;
+
+        // 섞은 후, 가장 작은 음식이 K 이상이면 종료
+        if (minHeap.heap[1] >= K) {
+            return mixCount;
+        }
+    }
+
+    // 더 이상 섞을 수 없다면 -1 반환
+    return minHeap.heap[1] >= K ? mixCount : -1;
 }
