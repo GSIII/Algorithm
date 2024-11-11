@@ -13,12 +13,8 @@ function solution(answers) {
         if (supo3[i%supo3.length]===answers[i]) supo3Ans++
     }
     
-    let answer = [supo1Ans,supo2Ans,supo3Ans];
-    const maxScore = Math.max(...answer)
+    let supoAns = [supo1Ans,supo2Ans,supo3Ans];
+    let maxAns = Math.max(...supoAns)
     
-    return answer.map((score,index)=>(score===maxScore?index+1:null))
-                 .filter((index)=>index!==null)
-    
-    
-    
+    return supoAns.map((ans,index)=>ans===maxAns?index+1:null).filter(index=>index!==null)
 }
