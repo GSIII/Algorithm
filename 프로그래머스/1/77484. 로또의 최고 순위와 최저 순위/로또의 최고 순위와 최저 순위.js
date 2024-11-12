@@ -1,21 +1,14 @@
 function solution(lottos, win_nums) {
-    const ranking = {
+    const winTable = {
         6:1,
         5:2,
         4:3,
         3:4,
         2:5,
-        0:6,
-        1:6
-    };
-    let zeroCount = lottos.filter(num => num === 0).length; 
-    let matchCount = lottos.filter(num => win_nums.includes(num)).length; 
-
-    let bestWin = matchCount + zeroCount; 
-    
-    let worstWin = matchCount;
-
-    return [ranking[bestWin], ranking[worstWin]];
-
-   
+        1:6,
+        0:6
+    }
+    let zeroCount = lottos.filter(lotto=>lotto===0).length;
+    let winCount = lottos.filter(lotto=>win_nums.includes(lotto)).length
+    return [winTable[zeroCount+winCount],winTable[winCount]]
 }
