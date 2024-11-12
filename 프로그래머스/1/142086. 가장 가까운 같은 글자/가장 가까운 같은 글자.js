@@ -1,14 +1,14 @@
 function solution(s) {
-    let answer = [];
-    let map = new Map()
-    
+    let arr = [];
+    let map = new Map();
     for (let i=0;i<s.length;i++) {
         if (map.has(s[i])) {
-            answer.push(i-map.get(s[i]))
+            arr.push(i-map.get(s[i]))
         } else {
-            answer.push(-1)
+            arr.push(-1)
         }
         map.set(s[i],i)
+        
     }
-    return answer
+    return arr
 }
