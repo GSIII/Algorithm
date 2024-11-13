@@ -1,17 +1,17 @@
 function solution(left, right) {
-    let sum = 0
+    let answer = 0
     for (let i=left;i<=right;i++) {
-        let count = 0
+        let count = 0;
         for (let j=1;j<=right;j++) {
             if (i%j===0) {
                 count++
             }
         }
         if (count%2===0) {
-            sum += i
+            answer +=i
         } else {
-            sum -= i
+            answer -= i
         }
     }
-    return sum
+    return answer
 }
