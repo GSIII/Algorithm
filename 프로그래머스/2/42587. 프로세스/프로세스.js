@@ -1,15 +1,15 @@
 function solution(priorities, location) {
-    let queue = priorities.map((priority,index)=>({priority,index}));
-    let count = 0
+    let queue = priorities.map((priority,index)=>({priority,index}))
+    let answer = 0;
     
     while(queue.length>0) {
         let current = queue.shift();
-        if (queue.some(process=>process.priority>current.priority)) {
+        if (queue.some(process=>process.priority>current.priority)){
             queue.push(current)
         } else {
-            count++
+            answer++
             if (current.index===location) {
-                return count
+                return answer
             }
         }
     }
