@@ -1,6 +1,6 @@
 function solution(keymap, targets) {
     let minPress = {}
-    keymap.forEach((key,index)=>{
+    keymap.forEach((key)=>{
         for (let i=0;i<key.length;i++) {
             let char = key[i]
             
@@ -11,15 +11,13 @@ function solution(keymap, targets) {
     })
     
     return targets.map((target)=>{
-            let presses = 0;
-
-            for (let i=0;i<target.length;i++) {
-                if (!minPress[target[i]]) return -1
-
-                presses += minPress[target[i]]
-            }
-
-            return presses
-        })
-
+        let press = 0;
+        for (let i=0;i<target.length;i++) {
+            if (!minPress[target[i]]) return -1
+            
+            press += minPress[target[i]]
+        }
+        return press
+    })
+    
 }
