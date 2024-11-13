@@ -15,7 +15,8 @@ function solution(babbling) {
         
         if (isValid) {
             for (let w of words) {
-                temp = temp.split(w).join(' ')
+                temp = temp.split(w).join(' ') // 빈칸으로 join해주지 않으면 split한 후 join되는 문자열이 words 배열에 포함될 수 있다. 따라서 빈칸으로 join해준다.
+                console.log(temp,w)
             }
             if (temp.trim()==='') {
                 answer++
