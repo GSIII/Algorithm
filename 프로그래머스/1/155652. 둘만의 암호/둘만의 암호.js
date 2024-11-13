@@ -1,15 +1,15 @@
 function solution(s, skip, index) {
-    let result = ''
-
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let answer = ''
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let filterAlphabet = [...alphabet].filter(alpha=>![...skip].includes(alpha))
     
-    let filterSkip = [...alphabet].filter((alpha)=>!skip.includes(alpha))
-    
-    for (let char of s) {
-        let currentIndex = filterSkip.indexOf(char);
-        let newIndex = (currentIndex+index)%filterSkip.length;
-        result += filterSkip[newIndex]
+    for (let i=0;i<s.length;i++) {
+        let alphaIndex = filterAlphabet.indexOf(s[i])
+        
+        let newIndex = (alphaIndex+index)%filterAlphabet.length
+        answer += filterAlphabet[newIndex]
+        
     }
+    return answer
     
-    return result
 }
