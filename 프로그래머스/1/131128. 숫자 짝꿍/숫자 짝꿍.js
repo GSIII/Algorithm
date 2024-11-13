@@ -1,34 +1,33 @@
 function solution(X, Y) {
-    let arr = []
-    let x = [...X]
-    let y = [...Y]
+    let answer = []
+    let x = [...X];
+    let y = [...Y];
     let xMap = new Map();
     let yMap = new Map();
     
-    x.forEach((num,count)=>{
+    x.forEach((num,cnt)=>{
         xMap.set(num,(xMap.get(num)||0)+1)
     })
-    y.forEach((num,count)=>{
+    y.forEach((num,cnt)=>{
         yMap.set(num,(yMap.get(num)||0)+1)
     })
     
-    xMap.forEach((count, num) => {
-        if (yMap.has(num)) {
-            let minCount = Math.min(count, yMap.get(num));
-            for (let i = 0; i < minCount; i++) {
-                arr.push(num);
+    for (let [xNum,xCnt] of xMap) {
+        if (yMap.has(xNum)) {
+            let minCnt = Math.min(xCnt,yMap.get(xNum))
+            
+            for (let i=1;i<=minCnt;i++) {
+                answer.push(xNum)
             }
         }
-    });
-    
-    arr.sort((a,b)=>b-a)
-    
-    for (let i=0;i<arr.length;i++) {
-        if (arr[i]==='0') {
+    }
+    answer.sort((a,b)=>b-a);
+    if (answer.length===0) return '-1';
+    for (let i=0;i<answer.length;i++) {
+        if (answer[i]==='0') {
             return '0'
         } else {
-            return arr.join('')
+            return answer.join('')
         }
     }
-    if (arr.length===0) return '-1'
 }
