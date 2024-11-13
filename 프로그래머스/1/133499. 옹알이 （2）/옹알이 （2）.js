@@ -1,28 +1,26 @@
 function solution(babbling) {
-    let words = ["aya", "ye", "woo", "ma" ];
-    let result = 0;
+    const words = ["aya", "ye", "woo", "ma"];
+    let answer = 0;
     
     for (let word of babbling) {
         let isValid = true;
+        let temp=word
         
         for (let w of words) {
-            if (word.includes(w+w)) {
+            if (temp.includes(w+w)) {
                 isValid = false
-                break;
+                break
             }
         }
         
         if (isValid) {
-            let newWord = word
             for (let w of words) {
-                newWord = newWord.split(w).join(' ')
+                temp = temp.split(w).join(' ')
             }
-            if (newWord.trim()==='') {
-                result++
+            if (temp.trim()==='') {
+                answer++
             }
         }
-        
     }
-    
-    return result
+    return answer
 }
