@@ -1,22 +1,20 @@
 function solution(want, number, discount) {
-    let answer = 0
     let wantMap = new Map()
-    
-    want.forEach((item,index)=>{
-        wantMap.set(item,number[index])
+    let answer = 0;
+    number.forEach((cnt,index)=>{
+        wantMap.set(want[index],cnt)
     })
     
-    for (let i=0;i<discount.length-9;i++) {
-        let currentMap = new Map()
+    for (let i=0;i<=discount.length-10;i++) {
+        let newWant = new Map();
         for (let j=i;j<i+10;j++) {
-            currentMap.set(discount[j],(currentMap.get(discount[j])||0)+1)
+            newWant.set(discount[j],(newWant.get(discount[j])||0)+1)
         }
-        
-        let isMatch = true;
+        let isMatch = true
         for (let [key,value] of wantMap) {
-            if (currentMap.get(key) !== value) {
-                isMatch = false
-                break
+            if (newWant.get(key)!==value){
+                isMatch=false
+                break;
             }
         }
         if (isMatch) {
@@ -24,5 +22,4 @@ function solution(want, number, discount) {
         }
     }
     return answer
-    
 }
