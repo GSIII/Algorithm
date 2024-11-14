@@ -1,7 +1,7 @@
 function solution(s) {
-    let arr = s.split(' ')
-    let maxNum = Math.max(...arr);
-    let minNum = Math.min(...arr);
-    return `${minNum} ${maxNum}`
+    let arr = s.split(' ');
+    let max = Math.max(...arr)
+    let min = Math.min(...arr)
+    return `${min} ${max}`
     
 }
