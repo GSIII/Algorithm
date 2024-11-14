@@ -1,10 +1,8 @@
 function solution(citations) {
-    citations.sort((a,b)=>b-a);
-    let count = 0;
+    citations.sort((a,b)=>b-a)
+    let answer = 0;
     for (let i=0;i<citations.length;i++) {
-        if (citations[i] > i) {
-            count++
-        }
+        if (citations[i]>i) answer++
     }
-    return count
+    return answer
 }
