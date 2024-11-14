@@ -1,15 +1,12 @@
 function solution(s, skip, index) {
+    const alpha = 'abcdefghijklmnopqrstuvwxyz';
+    let filteredAlpha = [...alpha].filter(al=>!skip.includes(al))
     let answer = ''
-    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    let filterAlphabet = [...alphabet].filter(alpha=>![...skip].includes(alpha))
     
     for (let i=0;i<s.length;i++) {
-        let alphaIndex = filterAlphabet.indexOf(s[i])
-        
-        let newIndex = (alphaIndex+index)%filterAlphabet.length
-        answer += filterAlphabet[newIndex]
-        
+        let oldIdx = filteredAlpha.indexOf(s[i])
+        let newIdx = (oldIdx+index)%filteredAlpha.length
+        answer += filteredAlpha[newIdx]
     }
     return answer
-    
 }
