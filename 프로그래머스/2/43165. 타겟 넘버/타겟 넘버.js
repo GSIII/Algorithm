@@ -1,14 +1,16 @@
 function solution(numbers, target) {
     let answer = 0;
-    const dfs = (index,currentSum)=>{
+    const dfs = (number,index) =>{
         if (index===numbers.length) {
-            if (currentSum===target) {
+            if (number===target) {
                 answer++
             }
-            return;
+            return
         }
-        dfs(index+1,currentSum+numbers[index]);
-        dfs(index+1,currentSum-numbers[index])
+        
+        dfs(number+numbers[index],index+1);
+        dfs(number-numbers[index],index+1)
+        
     }
     dfs(0,0)
     return answer
