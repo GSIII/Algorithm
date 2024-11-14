@@ -1,11 +1,13 @@
 function solution(clothes) {
-    let clothesMap = new Map()
-    clothes.forEach(([name,type])=>{
-        clothesMap.set(type,(clothesMap.get(type)||0)+1)
-    })
     let answer = 1;
-    clothesMap.forEach((count)=>{
-        answer *= (count+1)
+    let map = new Map();
+    clothes.forEach(([_,type])=>{
+        map.set(type,(map.get(type)||0)+1)
     })
+    
+    for (let [key,value] of map) {
+        let num = value+1
+        answer *= num
+    }
     return answer-1
 }
