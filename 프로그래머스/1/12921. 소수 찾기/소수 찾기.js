@@ -5,10 +5,9 @@ function solution(n) {
     for (let i=2;i<=Math.sqrt(n);i++) {
         if (arr[i]) {
             for (let j=i*i;j<=n;j+=i) {
-                arr[j]=false
+                arr[j] = false
             }
         }
     }
-    
-    return arr.filter(num=>num).length
+    return arr.filter(val=>val).length
 }
