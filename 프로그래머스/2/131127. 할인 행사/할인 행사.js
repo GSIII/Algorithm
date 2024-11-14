@@ -1,19 +1,19 @@
 function solution(want, number, discount) {
-    let wantMap = new Map()
+    let wantMap = new Map();
     let answer = 0;
-    number.forEach((cnt,index)=>{
-        wantMap.set(want[index],cnt)
+    want.forEach((item,index)=>{
+        wantMap.set(item,number[index])
     })
-    
+
     for (let i=0;i<=discount.length-10;i++) {
-        let newWant = new Map();
+        let dMap = new Map();
         for (let j=i;j<i+10;j++) {
-            newWant.set(discount[j],(newWant.get(discount[j])||0)+1)
+            dMap.set(discount[j],(dMap.get(discount[j])||0)+1)
         }
-        let isMatch = true
+        let isMatch = true;
         for (let [key,value] of wantMap) {
-            if (newWant.get(key)!==value){
-                isMatch=false
+            if (dMap.get(key)!==value) {
+                isMatch = false;
                 break;
             }
         }
