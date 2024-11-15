@@ -1,11 +1,12 @@
 function solution(nums) {
-    let length = Math.floor(nums.length/2)
-    let numSet = new Set([...nums])
-    if (numSet.size > length) {
-        return length
-    } else if (numSet.size===length) {
-        return length
-    } else if (numSet.size < length) {
-        return numSet.size
+    let chooseNum = Math.floor(nums.length/2)
+    let set = new Set()
+    nums.forEach(num=>{
+        set.add(num)
+    })
+    if (chooseNum>set.size) {
+        return set.size
+    } else {
+        return chooseNum
     }
 }
