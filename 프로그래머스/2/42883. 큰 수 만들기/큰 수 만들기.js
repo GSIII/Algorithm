@@ -1,16 +1,17 @@
 function solution(number, k) {
-    let stack = [];
-    let count = 0
-    for (let i=0;i<number.length;i++) {
-        while(count<k && stack[stack.length-1]<number[i]) {
-            stack.pop();
-            count++
-        } 
-        stack.push(number[i])
+    let cnt = 0;
+    let stack =[];
+    for (let num of number) {
+        while(cnt<k&&stack[stack.length-1]<num) {
+            stack.pop()
+            cnt++
+        }
+        stack.push(num)
     }
-    while(count<k) {
+    
+    while(cnt<k) {
         stack.pop()
-        count++
+        cnt++
     }
     return stack.join('')
 }
