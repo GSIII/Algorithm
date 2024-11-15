@@ -1,7 +1,7 @@
 function solution(food) {
-    let result = ''
+    let answer = ''
     for (let i=1;i<food.length;i++) {
-        result += String(i).repeat(Math.floor(food[i]/2))
+        answer += i.toString().repeat(Math.floor(food[i]/2))
     }
-    return result+'0'+result.split('').reverse().join('')
+    return answer+'0'+answer.split('').reverse().join('')
 }
