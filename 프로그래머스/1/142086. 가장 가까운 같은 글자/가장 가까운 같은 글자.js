@@ -1,6 +1,7 @@
 function solution(s) {
-    let answer = []
-    let map = new Map()
+    let answer = [];
+    let map = new Map();
+    
     for (let i=0;i<s.length;i++) {
         if (map.has(s[i])) {
             answer[i] = i-map.get(s[i])
