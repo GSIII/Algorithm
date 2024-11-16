@@ -4,10 +4,9 @@ function solution(s){
         if (s[i]==='(') {
             stack.push(s[i])
         } else {
-            if (stack.length===0) return false;
-            
+            if (stack.length===0) return false
             stack.pop()
         }
     }
-    return stack.length===0 
+    return stack.length===0
 }
