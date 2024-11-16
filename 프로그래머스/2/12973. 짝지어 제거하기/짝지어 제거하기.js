@@ -1,12 +1,12 @@
 function solution(s)
 {
     let stack = [];
-    for (let i=0;i<s.length;i++) {
-        if (stack.length===0 || stack[stack.length-1] !== s[i]) {
-            stack.push(s[i])
+    for (let char of s) {
+        if (stack.length===0 || stack[stack.length-1]!==char) {
+            stack.push(char)
         } else {
             stack.pop()
         }
     }
-    return !stack.length ? 1 : 0
+    return stack.length===0 ? 1 : 0
 }
