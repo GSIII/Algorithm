@@ -1,9 +1,9 @@
 function solution(n) {
-    const oneNum = (num) =>{
-        return num.toString(2).split('1').length-1
+    const oneCnt = (number) =>{
+        return number.toString(2).split('1').length-1
     }
-    let nextNum = n+1
-    while(oneNum(n) !== oneNum(nextNum)) {
+    let nextNum = n+1;
+    while(oneCnt(n)!==oneCnt(nextNum)) {
         nextNum++
     }
     return nextNum
