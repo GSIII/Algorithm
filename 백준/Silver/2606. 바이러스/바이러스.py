@@ -1,4 +1,5 @@
 import sys
+
 input = sys.stdin.readline
 
 N = int(input())
@@ -23,7 +24,7 @@ def dfs(v):
     count += 1
     
     for neighbor in graph[v]:
-        if visited[neighbor] == False:
+        if not visited[neighbor]:
             dfs(neighbor)
             
 dfs(R)
