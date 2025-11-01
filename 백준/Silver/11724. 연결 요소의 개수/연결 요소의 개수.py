@@ -1,9 +1,8 @@
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10**4)
 input = sys.stdin.readline
 
 N,M = map(int,input().split())
-
 graph = [[] for _ in range(N+1)]
 
 visited = [False] * (N+1)
@@ -21,9 +20,10 @@ def dfs(v):
         if not visited[neighbor]:
             dfs(neighbor)
             
-for i in range(1,1+N):
+for i in range(1,N+1):
     if not visited[i]:
         count += 1
         dfs(i)
         
 print(count)
+        
