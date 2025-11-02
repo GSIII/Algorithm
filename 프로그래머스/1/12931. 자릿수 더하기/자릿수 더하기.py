@@ -1,2 +1,2 @@
 def solution(n):
-    return sum(list(map(int,str(n))))
+    return sum(map(int,str(n)))
