@@ -1,15 +1,15 @@
 import sys
 input = sys.stdin.readline
 
-a,b = map(int,input().split())
+n,m = map(int,input().split())
 
-def gcd(a,b):
-    while b > 0:
-        a,b = b, a%b
-    return a
+def gcd(n,m):
+    while m > 0:
+        n,m = m, n%m
+    return n
 
-def lcm(a,b):
-    return (a*b) // gcd(a,b)
+def lcm(n,m):
+    return (n*m) // gcd(n,m)
 
-print(gcd(a,b))
-print(lcm(a,b))
+print(gcd(n,m))
+print(lcm(n,m))
