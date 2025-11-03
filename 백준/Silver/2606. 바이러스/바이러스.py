@@ -1,25 +1,21 @@
 import sys
-
 input = sys.stdin.readline
 
-N = int(input())
-M = int(input())
-R = 1
+n = int(input())
+m = int(input())
+r = 1
 
-graph = [[] for _ in range(N+1)]
-
-visited = [False] * (N+1)
-
+graph = [[] for _ in range(n+1)]
+visited = [False] * (n+1)
 count = 0
 
-for _ in range(M):
+for _ in range(m):
     u,v = map(int,input().split())
     graph[u].append(v)
     graph[v].append(u)
     
 def dfs(v):
     global count
-    
     visited[v] = True
     count += 1
     
@@ -27,6 +23,5 @@ def dfs(v):
         if not visited[neighbor]:
             dfs(neighbor)
             
-dfs(R)
-
+dfs(r)
 print(count-1)
