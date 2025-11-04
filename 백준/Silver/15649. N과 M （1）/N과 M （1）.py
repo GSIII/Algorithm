@@ -9,17 +9,18 @@ result = []
 
 def dfs():
     if len(result) == M:
-        print(' '.join(map(str, result)))
+        print(" ".join(map(str,result)))
         return
     
     for i in range(1,N+1):
         if not visited[i]:
-            visited[i] = True
             result.append(i)
+            visited[i] = True
             
             dfs()
             
             visited[i] = False
             result.pop()
             
-dfs()            
+            
+dfs()
