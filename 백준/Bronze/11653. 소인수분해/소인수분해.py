@@ -1,11 +1,12 @@
-n = int(input())
-d = 2
-while n!=1:
-    if n%d == 0 : 
-        print(d)
-        n = n // d
-    else :
-        d = d + 1
+import sys
+input = sys.stdin.readline
 
-        
-    
+N = int(input())
+i = 2
+
+while N !=1:
+    if N%i == 0:
+        print(i)
+        N = N // i
+    else:
+        i += 1
