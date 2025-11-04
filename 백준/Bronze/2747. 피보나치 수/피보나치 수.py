@@ -2,19 +2,11 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
+F = [0] * (n+1)
+F[0] = 0
+F[1] = 1
 
-dp = [0] * (n+1)
+for i in range(2, n+1):
+    F[i] = F[i-1] + F[i-2]
 
-def fibo(n):
-    if n == 1:
-        return 1
-    elif n == 0:
-        return 0
-    
-    if dp[n] != 0:
-        return dp[n]
-    
-    dp[n] = fibo(n-1) + fibo(n-2)
-    return dp[n]
-    
-print(fibo(n))
+print(F[n])
