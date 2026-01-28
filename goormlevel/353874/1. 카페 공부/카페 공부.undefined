@@ -1,23 +1,23 @@
-# -*- coding: utf-8 -*-
-# UTF-8 encoding when using korean
-h,w = map(int,input().split())
-x1, y1 = map(int,input().split())
-x2, y2 = map(int,input().split())
 
-possible = False 
+
+h,w = map(int,input().split())
+x1,y1 = map(int,input().split())
+x2,y2 = map(int,input().split())
+
+possible = False
 
 def check(x1,y1,x2,y2,h,w):
-	if x1 <= h and x2 <= h and y1+y2 <= w:
+	if x1 <= w and x2 <= w and y1+y2 <= h:
 		return True
-	elif y1 < w and y2 <= w and x1+x2 <= h:
+	if y1 <= h and y2 <= h and x1+x2 <= w:
 		return True
 	else:
 		return False
 
-for r1 in [(x1,y1), (y1,x1)]:
-	for r2 in [(x2,y2), (y2,x2)]:
-		if check(r1[0],r1[1],r2[0],r2[1], h, w):
+for r1 in [(x1, y1), (y1, x1)]:
+	for r2 in [(x2, y2), (y2, x2)]:
+		if check(r1[0], r1[1], r2[0], r2[1], h, w):
 			possible = True
-		if check(r1[0],r1[1],r2[0],r2[1], w, h):
+		if check(r1[0], r1[1], r2[0], r2[1], w, h):
 			possible = True
 print('YES' if possible else 'NO')
