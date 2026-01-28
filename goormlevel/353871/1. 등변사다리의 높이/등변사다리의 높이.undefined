@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+user_input = input()
+k, d1, d2 = map(int,user_input.split())
+answer = 4 * k * k - (d1 - d2) * (d1 - d2)
+
+print(answer)
