@@ -4,8 +4,8 @@ def solution(wallpaper):
     for i in range(len(wallpaper)):
         for j in range(len(wallpaper[i])):
             if wallpaper[i][j] == '#':
-                lux = min(lux,i)
-                luy = min(luy,j)
-                rdx = max(rdx,i+1)
-                rdy = max(rdy,j+1)
+                lux = min(i,lux)
+                luy = min(j,luy)
+                rdx = max(i+1, rdx)
+                rdy = max(j+1, rdy)
     return [lux,luy,rdx,rdy]
