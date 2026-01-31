@@ -3,24 +3,22 @@ input = sys.stdin.readline
 from collections import Counter
 
 n = int(input())
-numbers = [int(input()) for _ in range(n)]
+nums = [int(input()) for _ in range(n)]
 
-mean = round(sum(numbers)/len(numbers))
+mean = round(sum(nums)/len(nums))
 
-numbers.sort()
-median = numbers[len(numbers)//2]
+nums.sort()
+median = nums[len(nums)//2]
 
-counter = Counter(numbers)
+counter = Counter(nums)
 max_freq = max(counter.values())
-modes = [num for num,freq in counter.items() if freq == max_freq]
+modes = [num for num,freq in counter.items() if max_freq == freq]
 modes.sort()
 if len(modes) > 1:
     mode = modes[1]
 else:
     mode = modes[0]
-    
-range_num = max(numbers) - min(numbers)
-
+range_num = max(nums) - min(nums)
 print(mean)
 print(median)
 print(mode)
